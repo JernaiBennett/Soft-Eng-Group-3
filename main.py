@@ -6,8 +6,7 @@ from flask import Flask, request, jsonify
 from flask_mysqldb import MySQL
 from dotenv import load_dotenv
 import os
-from get_books import all_books 
-
+from Books import get_books 
 
 print("API is running")
 
@@ -24,11 +23,10 @@ app.config['MYSQL_DB'] = os.getenv('MYSQL_DB')
 
 mysql = MySQL(app)
 
-
 # Route to get all books
 @app.route('/books', methods=['GET'])
 def books_route():
-    return all_books(mysql)  # Call the function from book_routes.py
+    return get_books(mysql)  # Call the function from book_routes.py
 
 if __name__ == '__main__':
     app.run(debug=True)

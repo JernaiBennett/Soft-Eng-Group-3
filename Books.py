@@ -4,7 +4,7 @@ from flask import jsonify
 from flask_mysqldb import MySQL
 
 # Function to get all books
-def all_books(mysql):
+def get_books(mysql):
     cur = mysql.connection.cursor()
     cur.execute("SELECT * FROM Book")
     rows = cur.fetchall()
