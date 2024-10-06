@@ -1,6 +1,6 @@
 ######################## Get All Books ########################
 
-from flask import jsonify
+from flask import jsonify, request
 from flask_mysqldb import MySQL
 
 # Function to get all books
@@ -25,5 +25,35 @@ def get_books(mysql):
         books.append(book)
 
     cur.close()
+    
+    return jsonify(books)
 
+def get_books_by_genre(mysql):
+    genre = request.args.get('genre')
+
+    if not genre:
+        return jsonify({'error': 'Genre is required'}), 400
+
+    cur = mysql.connection.cursor()
+    query = "SELECT * FROM Book WHERE genre = %s"
+    cur.execute(query, (genre,))
+    rows = cur.fetchall()
+
+    books = []
+    for row in rows:
+        book = {
+            'isbn': row[0],
+            'name': row[1],
+            'description': row[2],
+            'price': row[3],
+            'author_id': row[4],
+            'genre': row[5],
+            'publisher_id': row[6],
+            'year_published': row[7],
+            'copies_sold': row[8]
+        }
+        books.append(book)
+
+    cur.close()
+    
     return jsonify(books)
