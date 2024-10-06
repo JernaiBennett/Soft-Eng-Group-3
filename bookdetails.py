@@ -1,4 +1,4 @@
-# to run, type python main.py in terminal
+# to run, type python bookdetails.py in terminal
 
 # flask is the server
 from flask import Flask, request, jsonify
