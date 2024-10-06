@@ -31,45 +31,6 @@ def books_route():
 if __name__ == '__main__':
     app.run(debug=True)
 
-# the route is the url that the server is listening to, use app variable
-# @app.route('/')
-# def home():
-#     return "Home"
 
-#GET retrieve 
-# @app.route("/get-user/<user_id>", methods=["GET"])
-
-# def get_user(user_id):
-#   #declare mock data for access parameter
-#   user_data = {
-#     "user_id:": user_id,
-#     "name": "John Doe",
-#     "email": "john.doe@example.com"
-#   }
-
-#query parameter ex:'get-user/123?extra=hello world', extra is the query parameter
-  # extra = request.args.get('extra')
-  # #if extra is not None, add it to the user_data
-  # if extra:
-  #   user_data['extra'] = extra
-  # #return the user_data as a json object
-  # # #200 is the status code of a successful response
-  # return jsonify(user_data), 200
-
-# test it out, URL: http://127.0.0.1:5000/get-user/123?extra="hello"
-
-#POST create 
-# @app.route("/create-user", methods=["POST"])
-# def create_user(): 
-#   #receive data from the request 
-#   data = request.get_json()
-#   # add to database here somewhere
-#   #return the data as a json object
-#   return jsonify(data), 201
-
-   
-#PUT modify
-
-#DELETE remove
 
 
