@@ -5,32 +5,25 @@ app = Flask(__name__)
 
 # Database connection parameters
 db_config = {
-    'host': 'bookstore.cvg0myqa4kzu.us-east-1.rds.amazonaws.com ',     # Replace with your MySQL host
-    'user': 'admin',     # Replace with your MySQL username
-    'password': 'PMw2OzYPsVab0wu6w3t9', # Replace with your MySQL password
-    'database': 'bookstore'  # Replace with your MySQL database name
+    'host': 'localhost',     # Replace with your MySQL host
+    'user': 'root',          # Replace with your MySQL username
+    'password': 'password',  # Replace with your MySQL password
+    'database': 'shopping_db'  # Replace with your MySQL database name
 }
 
 # Create a connection to the MySQL database
 def get_db_connection():
-    try:
-        connection = mysql.connector.connect(**db_config)
-        return connection
-    except mysql.connector.Error as err:
-        print(f"Error: {err}")
-        return None
+    connection = mysql.connector.connect(**db_config)
+    return connection
 
 # Route to retrieve the subtotal price of all items in the user's shopping cart
 @app.route('/cart/subtotal/<user_id>', methods=['GET'])
 def get_cart_subtotal(user_id):
     connection = get_db_connection()
-    if not connection:
-        return jsonify({'error': 'Failed to connect to the database'}), 500
-
     cursor = connection.cursor(dictionary=True)
     cursor.execute("SELECT SUM(price * quantity) AS subtotal FROM cart WHERE user_id = %s", (user_id,))
     result = cursor.fetchone()
-    subtotal = result['subtotal'] if result['subtotal'] else 0
+    subtotal = result['subtotal'] if result['subtotal'] is not None else 0
 
     cursor.close()
     connection.close()
@@ -46,13 +39,10 @@ def add_to_cart():
     price = data.get('price')
     quantity = data.get('quantity')
 
-    if user_id is None or book_id is None or price is None or quantity is None:
+    if not user_id or not book_id or not price or not quantity:
         return jsonify({'message': 'Invalid request data'}), 400
 
     connection = get_db_connection()
-    if not connection:
-        return jsonify({'error': 'Failed to connect to the database'}), 500
-
     cursor = connection.cursor()
     # Insert the new book into the cart or update the quantity if it already exists
     cursor.execute("""
@@ -71,9 +61,6 @@ def add_to_cart():
 @app.route('/cart/<user_id>', methods=['GET'])
 def get_cart(user_id):
     connection = get_db_connection()
-    if not connection:
-        return jsonify({'error': 'Failed to connect to the database'}), 500
-
     cursor = connection.cursor(dictionary=True)
     cursor.execute("SELECT book_id, price, quantity FROM cart WHERE user_id = %s", (user_id,))
     cart_items = cursor.fetchall()
@@ -90,13 +77,10 @@ def delete_from_cart():
     user_id = data.get('userId')
     book_id = data.get('bookId')
 
-    if user_id is None or book_id is None:
+    if not user_id or not book_id:
         return jsonify({'message': 'Invalid request data'}), 400
 
     connection = get_db_connection()
-    if not connection:
-        return jsonify({'error': 'Failed to connect to the database'}), 500
-
     cursor = connection.cursor()
     cursor.execute("DELETE FROM cart WHERE user_id = %s AND book_id = %s", (user_id, book_id))
     connection.commit()
