@@ -1,0 +1,212 @@
+-- Table to store authors
+CREATE TABLE authors (
+    author_id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    biography TEXT,
+    publisher VARCHAR(100)
+);
+
+-- Table to store books
+CREATE TABLE books (
+    isbn VARCHAR(13) PRIMARY KEY,
+    book_name VARCHAR(100),
+    description TEXT,
+    price DECIMAL(10, 2),
+    author_id INT,
+    genre VARCHAR(50),
+    publisher VARCHAR(100),
+    year_published YEAR,
+    copies_sold INT,
+    FOREIGN KEY (author_id) REFERENCES authors(author_id)
+);
+
+-- Table to store users
+CREATE TABLE users (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) UNIQUE,
+    password VARCHAR(255),
+    name VARCHAR(100),
+    email VARCHAR(100),
+    home_address TEXT
+);
+
+-- Table to store credit card details
+CREATE TABLE credit_cards (
+    card_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    card_number VARCHAR(16),
+    expiration_date DATE,
+    cvv VARCHAR(4),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+-- Table to store shopping cart items
+CREATE TABLE shopping_cart (
+    cart_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    isbn VARCHAR(13),
+    quantity INT,
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (isbn) REFERENCES books(isbn)
+);
+
+-- Table to store book ratings and comments
+CREATE TABLE book_reviews (
+    review_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    isbn VARCHAR(13),
+    rating INT CHECK (rating >= 1 AND rating <= 5),
+    comment TEXT,
+    review_date DATE,
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (isbn) REFERENCES books(isbn)
+);
+
+-- Table to store wishlists
+CREATE TABLE wishlists (
+    wishlist_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    wishlist_name VARCHAR(100),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+-- Table to store wishlist books
+CREATE TABLE wishlist_books (
+    wishlist_book_id INT AUTO_INCREMENT PRIMARY KEY,
+    wishlist_id INT,
+    isbn VARCHAR(13),
+    FOREIGN KEY (wishlist_id) REFERENCES wishlists(wishlist_id),
+    FOREIGN KEY (isbn) REFERENCES books(isbn)
+);
+
+
+
+************************************************************
+
+DROP TABLE wishlist_books;
+DROP TABLE wishlists;
+DROP TABLE book_reviews;
+DROP TABLE shopping_cart;
+DROP TABLE credit_cards;
+DROP TABLE books;
+DROP TABLE users;
+DROP TABLE authors;
+
+
+************************************************************
+CREATE DATABASE bookstore;
+USE bookstore;
+
+-- Publisher Table
+CREATE TABLE Publisher (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+);
+
+-- Author Table
+CREATE TABLE Author (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    biography TEXT,
+    publisher_id INT,
+    FOREIGN KEY (publisher_id) REFERENCES Publisher(id)
+);
+
+-- User Table
+CREATE TABLE User (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    name VARCHAR(255),
+    email VARCHAR(255),
+    home_address TEXT,
+    card_number VARCHAR(16), 
+    expiration_date DATE
+);
+
+-- Book Table
+CREATE TABLE Book (
+    isbn VARCHAR(13) PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    price DECIMAL(10, 2),
+    author_id INT,
+    genre VARCHAR(255),
+    publisher_id INT,
+    year_published YEAR,
+    copies_sold INT DEFAULT 0,
+    FOREIGN KEY (author_id) REFERENCES Author(id),
+    FOREIGN KEY (publisher_id) REFERENCES Publisher(id)
+);
+
+-- Shopping Cart Table
+CREATE TABLE ShoppingCart (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES User(id)
+);
+
+-- Shopping Cart Item Table (Many-to-Many for Cart and Books)
+CREATE TABLE ShoppingCartItem (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    cart_id INT,
+    book_isbn VARCHAR(13),
+    quantity INT,
+    FOREIGN KEY (cart_id) REFERENCES ShoppingCart(id),
+    FOREIGN KEY (book_isbn) REFERENCES Book(isbn)
+);
+
+-- Rating Table
+CREATE TABLE Rating (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    book_isbn VARCHAR(13),
+    rating INT CHECK (rating BETWEEN 1 AND 5),
+    date_stamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES User(id),
+    FOREIGN KEY (book_isbn) REFERENCES Book(isbn)
+);
+
+-- Comment Table
+CREATE TABLE Comment (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    book_isbn VARCHAR(13),
+    comment TEXT,
+    date_stamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES User(id),
+    FOREIGN KEY (book_isbn) REFERENCES Book(isbn)
+);
+
+-- Wishlist Table
+CREATE TABLE Wishlist (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255),
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES User(id)
+);
+
+-- Wishlist Item Table (Many-to-Many for Wishlist and Books)
+CREATE TABLE WishlistItem (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    wishlist_id INT,
+    book_isbn VARCHAR(13),
+    FOREIGN KEY (wishlist_id) REFERENCES Wishlist(id),
+    FOREIGN KEY (book_isbn) REFERENCES Book(isbn)
+);
+
+
+
+************************************************************
+DROP TABLE WishlistItem;
+DROP TABLE Wishlist;
+DROP TABLE Comment;
+DROP TABLE Rating;
+DROP TABLE ShoppingCartItem;
+DROP TABLE ShoppingCart;
+DROP TABLE Book;
+DROP TABLE Author;
+DROP TABLE Publisher;
+DROP TABLE User;
