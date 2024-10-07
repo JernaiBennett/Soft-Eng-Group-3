@@ -7,6 +7,8 @@ from flask_mysqldb import MySQL
 from dotenv import load_dotenv
 import os
 from Books import get_books 
+from bookdetails import get_book 
+from bookdetails import create_book
 
 print("API is running")
 
@@ -27,6 +29,16 @@ mysql = MySQL(app)
 @app.route('/books', methods=['GET'])
 def books_route():
     return get_books(mysql)  # Call the function from book_routes.py
+
+# Route to POST a book
+@app.route('/bookdetails', methods=['POST'])
+def bookdetails_route():
+    return create_book(mysql)
+
+# Route to GET a book using ISBN
+@app.route('/bookdetails/<isbn>', methods=['GET'])
+def bookdetails_route(isbn):
+    return get_book(mysql, isbn)
 
 if __name__ == '__main__':
     app.run(debug=True)
