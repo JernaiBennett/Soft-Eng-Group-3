@@ -1,4 +1,4 @@
-# DATA to use in the body of create-book
+***DATA to use in the body of create-book***
 
 {
     "isbn": "9780486266855",
@@ -11,34 +11,6 @@
     "publisher_name": "Wiley and Putnam",
     "year_published": 1845,
     "copies_sold": 5000000
-}
-
-
-{
-    "isbn": "9781974800111",
-    "name": "The Tell-Tale Heart",
-    "description": "A short story by Edgar Allan Poe, first published in 1843, about the unnamed narrator's descent into madness.",
-    "price": 6.99,
-    "author_first_name": "Edgar Allan",
-    "author_last_name": "Poe",
-    "genre": "Horror",
-    "publisher_name": "The Pioneer",
-    "year_published": 1843,
-    "copies_sold": 4000000
-}
-
-
-{
-    "isbn": "9780141441146",
-    "name": "Jane Eyre",
-    "description": "A novel by Charlotte Brontë, published in 1847, that follows the emotions and experiences of its eponymous heroine.",
-    "price": 11.99,
-    "author_first_name": "Charlotte",
-    "author_last_name": "Brontë",
-    "genre": "Classics",
-    "publisher_name": "Smith, Elder & Co.",
-    "year_published": 1847,
-    "copies_sold": 20000000
 }
 
 
@@ -142,19 +114,6 @@
 }
 
 
-{
-    "isbn": "9780141439815",
-    "name": "Persuasion",
-    "description": "A novel by Jane Austen that deals with the consequences of being persuaded to make decisions that affect one’s life.",
-    "price": 9.99,
-    "author_first_name": "Jane",
-    "author_last_name": "Austen",
-    "genre": "Romance",
-    "publisher_name": "Oxford University Press",
-    "year_published": 1817,
-    "copies_sold": 1500000
-}
-
 
 {
     "isbn": "9780141439808",
@@ -184,19 +143,6 @@
 }
 
 
-{
-    "isbn": "9780743477112",
-    "name": "Hamlet",
-    "description": "A tragedy by William Shakespeare, believed to have been written between 1599 and 1601.",
-    "price": 7.99,
-    "author_first_name": "William",
-    "author_last_name": "Shakespeare",
-    "genre": "Drama",
-    "publisher_name": "Simon & Schuster",
-    "year_published": 1601,
-    "copies_sold": 18000000
-}
-
 
 {
     "isbn": "9780743477129",
@@ -212,18 +158,6 @@
 }
 
 
-{
-    "isbn": "9780439023481",
-    "name": "The Hunger Games",
-    "description": "A dystopian novel by Suzanne Collins that follows the story of Katniss Everdeen in a post-apocalyptic world.",
-    "price": 14.99,
-    "author_first_name": "Suzanne",
-    "author_last_name": "Collins",
-    "genre": "Dystopian",
-    "publisher_name": "Scholastic Press",
-    "year_published": 2008,
-    "copies_sold": 23000000
-}
 
 
 {
@@ -254,9 +188,64 @@
     "copies_sold": 18000000
 }
 
+
+
 ############################################################################
 
-ALREADY ADDED:
+***ALREADY ADDED:***
+
+{
+    "isbn": "9780141441146",
+    "name": "Jane Eyre",
+    "description": "A novel by Charlotte Brontë, published in 1847, that follows the emotions and experiences of its eponymous heroine.",
+    "price": 11.99,
+    "author_first_name": "Charlotte",
+    "author_last_name": "Brontë",
+    "genre": "Classics",
+    "publisher_name": "Smith, Elder & Co.",
+    "year_published": 1847,
+    "copies_sold": 20000000
+}
+
+
+{
+    "isbn": "9780141439815",
+    "name": "Persuasion",
+    "description": "A novel by Jane Austen that deals with the consequences of being persuaded to make decisions that affect one’s life.",
+    "price": 9.99,
+    "author_first_name": "Jane",
+    "author_last_name": "Austen",
+    "genre": "Romance",
+    "publisher_name": "Oxford University Press",
+    "year_published": 1817,
+    "copies_sold": 1500000
+}
+
+{
+    "isbn": "9780439023481",
+    "name": "The Hunger Games",
+    "description": "A dystopian novel by Suzanne Collins that follows the story of Katniss Everdeen in a post-apocalyptic world.",
+    "price": 14.99,
+    "author_first_name": "Suzanne",
+    "author_last_name": "Collins",
+    "genre": "Dystopian",
+    "publisher_name": "Scholastic Press",
+    "year_published": 2008,
+    "copies_sold": 23000000
+}
+
+{
+    "isbn": "9780385720977",
+    "name": "The Handmaid's Tale",
+    "description": "A dystopian novel by Margaret Atwood set in a totalitarian regime that treats women as property.",
+    "price": 12.99,
+    "author_first_name": "Margaret",
+    "author_last_name": "Atwood",
+    "genre": "Dystopian",
+    "publisher_name": "McClelland and Stewart",
+    "year_published": 1985,
+    "copies_sold": 200000
+}
 
 {
     "isbn": "9780399501487",
@@ -271,6 +260,22 @@ ALREADY ADDED:
     "copies_sold": 15000000
 }
 
+
+
+{
+    "isbn": "9780743477112",
+    "name": "Hamlet",
+    "description": "A tragedy by William Shakespeare, believed to have been written between 1599 and 1601.",
+    "price": 7.99,
+    "author_first_name": "William",
+    "author_last_name": "Shakespeare",
+    "genre": "Drama",
+    "publisher_name": "Simon & Schuster",
+    "year_published": 1601,
+    "copies_sold": 18000000
+}
+
+
 {
     "isbn": "9780743477550",
     "name": "Othello",
@@ -283,3 +288,36 @@ ALREADY ADDED:
     "year_published": 1603,
     "copies_sold": 17000000
 }
+
+
+{
+    "isbn": "9780199535569",
+    "name": "Pride and Prejudice",
+    "description": "A romantic novel of manners that depicts the British Regency-era, written by Jane Austen.",
+    "price": 9.99,
+    "author_first_name": "Jane",
+    "author_last_name": "Austen",
+    "genre": "Romance",
+    "publisher_name": "Oxford University Press",
+    "year_published": 1813,
+    "copies_sold": 2000000
+}
+
+
+
+{
+    "isbn": "9781974800111",
+    "name": "The Tell-Tale Heart",
+    "description": "A short story by Edgar Allan Poe, first published in 1843, about the unnamed narrator's descent into madness.",
+    "price": 6.99,
+    "author_first_name": "Edgar Allan",
+    "author_last_name": "Poe",
+    "genre": "Horror",
+    "publisher_name": "The Pioneer",
+    "year_published": 1843,
+    "copies_sold": 4000000
+}
+
+
+
+
