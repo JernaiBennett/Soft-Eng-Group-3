@@ -7,7 +7,7 @@ from flask_mysqldb import MySQL
 from dotenv import load_dotenv
 import os
 from Books import get_books 
-from ShoppingCart import get_cart_books
+from ShoppingCart import (get_cart_books,add_book_to_cart)
 
 print("API is running")
 
@@ -33,6 +33,11 @@ def books_route():
 @app.route('/shopping_cart', methods=['GET'])
 def get_cart_book():
     return get_cart_books(mysql)  # Call the function from book_routes.py
+
+# Route to add a book to the shopping cart
+@app.route('/shopping_cart', methods=['POST'])
+def add_cart_book():
+    return add_book_to_cart(mysql)
 
 if __name__ == '__main__':
     app.run(debug=True)
