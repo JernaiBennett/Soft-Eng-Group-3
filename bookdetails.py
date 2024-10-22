@@ -2,34 +2,13 @@
 
 # flask is the server
 from flask import Flask, request, jsonify
-# provides MySQL connection for Flask
-from flask_mysqldb import MySQL
-from dotenv import load_dotenv
-import os
-
-
-print("API is running")
-
-app = Flask(__name__)
-
-# Load the .env file
-load_dotenv()
-
-# Set MySQL configurations using environment variables
-app.config['MYSQL_HOST'] = os.getenv('MYSQL_HOST')
-app.config['MYSQL_USER'] = os.getenv('MYSQL_USER')
-app.config['MYSQL_PASSWORD'] = os.getenv('MYSQL_PASSWORD')
-app.config['MYSQL_DB'] = os.getenv('MYSQL_DB')
-
-mysql = MySQL(app)
-
 
 
 ######################## ADD Book ########################
 
 # POST route to create a new book
-@app.route("/create-book", methods=["POST"])
-def create_book():
+
+def create_book(mysql):
     try:
         # get the book data from the request body (JSON format)
         data = request.get_json()
@@ -111,8 +90,8 @@ def create_book():
 #################### GET Book by ISBN ####################
 # GET route to retrieve book by ISBN
 # the route is the url that the server is listening to
-@app.route("/get-book/<isbn>", methods=["GET"])
-def get_book(isbn):
+
+def get_book(mysql, isbn):
     try:
         # create a cursor object to execute queries
         cur = mysql.connection.cursor()
@@ -153,8 +132,7 @@ def get_book(isbn):
 #################### CREATE Author profile ####################
 
 # POST route to create a new author
-@app.route("/create-author", methods=["POST"])
-def create_author():
+def create_author(mysql):
     try:
         # Get the author data from the request body (JSON format)
         data = request.get_json()
@@ -163,41 +141,82 @@ def create_author():
         first_name = data.get('first_name')
         last_name = data.get('last_name')
         biography = data.get('biography')
-        publisher_id = data.get('publisher_id')
+        publisher_name = data.get('publisher_name')  # Changed to handle publisher_name instead of publisher_id
 
-        # Check if all required fields are present
-        if not all([first_name, last_name, biography, publisher_id]):
-            return jsonify({"error": "Missing required author data"}), 400
+        # Check if both first_name and last_name are provided
+        if not all([first_name, last_name]):
+            return jsonify({"error": "First name and last name are required"}), 400
 
-        # Create a cursor object to execute the SQL query
+        # Create a cursor object to execute SQL queries
         cur = mysql.connection.cursor()
 
-        # SQL query to insert the author into the Author table
-        query = """
-            INSERT INTO Author (first_name, last_name, biography, publisher_id)
-            VALUES (%s, %s, %s, %s)
-        """
+        # Step 1: Check if the publisher already exists in the Publisher table
+        publisher_query = "SELECT id FROM Publisher WHERE name = %s"
+        cur.execute(publisher_query, (publisher_name,))
+        publisher = cur.fetchone()
 
-        # Execute the query with the provided author data
-        cur.execute(query, (first_name, last_name, biography, publisher_id))
+        if publisher:
+            # If the publisher exists, get the publisher_id
+            publisher_id = publisher[0]
+        else:
+            # If the publisher does not exist, insert the publisher and get the new publisher_id
+            insert_publisher_query = "INSERT INTO Publisher (name) VALUES (%s)"
+            cur.execute(insert_publisher_query, (publisher_name,))
+            mysql.connection.commit()
+            publisher_id = cur.lastrowid
 
-        # Commit the transaction
-        mysql.connection.commit()
+        # Step 2: Check if the author already exists in the database
+        author_query = "SELECT id, biography, publisher_id FROM Author WHERE first_name = %s AND last_name = %s"
+        cur.execute(author_query, (first_name, last_name))
+        author = cur.fetchone()
 
-        # Close the cursor
-        cur.close()
+        # If the author exists, update missing fields
+        if author:
+            author_id = author[0]
+            existing_biography = author[1]
+            existing_publisher_id = author[2]
 
-        # Return a success response
-        return jsonify({"message": "Author added successfully!"}), 201
+            # Update the biography if it's missing or NULL
+            if not existing_biography and biography:
+                update_biography_query = "UPDATE Author SET biography = %s WHERE id = %s"
+                cur.execute(update_biography_query, (biography, author_id))
+
+            # Update the publisher_id if it's missing or NULL
+            if not existing_publisher_id and publisher_id:
+                update_publisher_query = "UPDATE Author SET publisher_id = %s WHERE id = %s"
+                cur.execute(update_publisher_query, (publisher_id, author_id))
+
+            mysql.connection.commit()
+
+            return jsonify({"message": "Author information updated successfully!"}), 200
+
+        # If the author does not exist, insert the new author
+        else:
+            if not biography:
+                return jsonify({"error": "Biography is required for new authors"}), 400
+
+            insert_author_query = """
+                INSERT INTO Author (first_name, last_name, biography, publisher_id)
+                VALUES (%s, %s, %s, %s)
+            """
+            cur.execute(insert_author_query, (first_name, last_name, biography, publisher_id))
+            mysql.connection.commit()
+
+            return jsonify({"message": "Author added successfully!"}), 201
 
     except Exception as e:
         # Return an error message in case of an exception
         return jsonify({"error": str(e)}), 500
+
+    finally:
+        # Close the cursor
+        cur.close()
+
     
 #################### GET List of books by Author ####################
 
 # GET route to retrieve all books by a specific author
-@app.route("/get-books-by-author/<int:author_id>", methods=["GET"])
+
 def get_books_by_author(author_id):
     try:
         # Create a cursor object to execute the query
@@ -243,7 +262,7 @@ def get_books_by_author(author_id):
 #################### BONUS METHOD to see Author ID numbers ####################
 
 # GET route to retrieve a list of all authors with their IDs
-@app.route("/get-authors", methods=["GET"])
+
 def get_authors():
     try:
         # Create a cursor object to execute the query
@@ -278,10 +297,6 @@ def get_authors():
         cur.close()
 
 ##############################################################
-
-# runs the flask server
-if __name__ == "__main__":
-    app.run(debug=True)
 
 
 

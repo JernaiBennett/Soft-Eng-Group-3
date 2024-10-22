@@ -173,6 +173,30 @@
     "copies_sold": 19000000
 }
 
+############################################################################
+POST Create Author Profile:
+{
+    "first_name": "Suzanne",
+    "last_name": "Collins",
+    "biography": "Suzanne Collins is an American writer and author of The Hunger Games series.",
+    "publisher_name": "Scholastic Press"
+}
+
+{
+    "first_name": "F. Scott",
+    "last_name": "Fitzgerald",
+    "biography": "F. Scott Fitzgerald was an American novelist and short story writer, widely regarded as one of the greatest American writers of the 20th century. He is best known for his novel 'The Great Gatsby'.",
+    "publisher_name": "Penguin Books"
+}
+############################################################################
+GET book by ISBN:
+
+9780141439815       Persuasion
+9780743482747       Romeo and Juliet
+
+############################################################################
+
+***ALREADY ADDED:***
 
 
 {
@@ -187,12 +211,6 @@
     "year_published": 2010,
     "copies_sold": 18000000
 }
-
-
-
-############################################################################
-
-***ALREADY ADDED:***
 
 {
     "isbn": "9780141441146",
