@@ -9,6 +9,7 @@ import os
 from Books import get_books 
 from bookdetails import get_book 
 from bookdetails import create_book
+from bookdetails import create_author
 
 print("API is running")
 
@@ -31,14 +32,19 @@ def books_route():
     return get_books(mysql)  # Call the function from book_routes.py
 
 # Route to POST a book
-@app.route('/bookdetails', methods=['POST'])
-def bookdetails_route():
+@app.route('/create-book', methods=['POST'])
+def create_book_route():
     return create_book(mysql)
 
 # Route to GET a book using ISBN
-@app.route('/bookdetails/<isbn>', methods=['GET'])
-def bookdetails_route(isbn):
+@app.route('/get-book/<isbn>', methods=['GET'])
+def get_book_by_isbn(isbn):
     return get_book(mysql, isbn)
+
+# Route to Create/Update Author Profile
+@app.route('/create-author', methods=['POST'])
+def create_author_route():
+    return create_author(mysql)
 
 if __name__ == '__main__':
     app.run(debug=True)
