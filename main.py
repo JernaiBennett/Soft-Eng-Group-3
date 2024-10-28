@@ -6,6 +6,7 @@ from flask import Flask, request, jsonify
 from flask_mysqldb import MySQL
 from dotenv import load_dotenv
 import os
+from ShoppingCart import (get_cart_books,add_book_to_cart)
 from bookdetails import get_book 
 from bookdetails import create_book
 from bookdetails import create_author
@@ -30,6 +31,16 @@ mysql = MySQL(app)
 @app.route('/books', methods=['GET'])
 def books_route():
     return get_books(mysql)  # Call the function from book_routes.py
+
+# Route to get all books
+@app.route('/shopping_cart', methods=['GET'])
+def get_cart_book():
+    return get_cart_books(mysql)  # Call the function from book_routes.py
+
+# Route to add a book to the shopping cart
+@app.route('/shopping_cart', methods=['POST'])
+def add_cart_book():
+    return add_book_to_cart(mysql)
 
 # Route to POST a book
 @app.route('/create-book', methods=['POST'])
