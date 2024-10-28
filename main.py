@@ -6,6 +6,9 @@ from flask import Flask, request, jsonify
 from flask_mysqldb import MySQL
 from dotenv import load_dotenv
 import os
+from bookdetails import get_book 
+from bookdetails import create_book
+from bookdetails import create_author
 from Books import get_books, get_books_by_genre, update_book_price_by_publisher
 
 print("API is running")
@@ -28,10 +31,27 @@ mysql = MySQL(app)
 def books_route():
     return get_books(mysql)  # Call the function from book_routes.py
 
+# Route to POST a book
+@app.route('/create-book', methods=['POST'])
+def create_book_route():
+    return create_book(mysql)
+
+# Route to GET a book using ISBN
+@app.route('/get-book/<isbn>', methods=['GET'])
+def get_book_by_isbn(isbn):
+    return get_book(mysql, isbn)
+
+# Route to Create/Update Author Profile
+@app.route('/create-author', methods=['POST'])
+def create_author_route():
+    return create_author(mysql)
+
+# Route to GET books by Genre
 @app.route('/books_by_genre', methods=['GET'])
 def books_by_genre():
     return get_books_by_genre(mysql) 
 
+# Route to PUT a new discount on a book by publisher
 @app.route('/books_discount_by_publisher', methods=['PUT'])
 def books_discount_by_publisher():
     return update_book_price_by_publisher(mysql) 
