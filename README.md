@@ -1,3 +1,18 @@
+### HOW TO MAC ###
+1. python3 -m pip install --user virtualenv  # Install virtualenv if you don’t have it
+2. python3 -m venv venv  # Create the virtual environment
+3. source venv/bin/activate  # Activate the virtual environment
+4. pip3 install -r requirements.txt  # Install all packages from the requirements.txt
+5. python3 main.py  # Run the application
+6. deactivate  # Deactivate the virtual environment if needed
+
+### HOW TO Windows ###
+1. python -m pip install --user virtualenv  # Install virtualenv if you don’t have it
+2. python -m venv venv  # Create the virtual environment
+3. venv\Scripts\activate  # Activate the virtual environment
+4. pip install -r requirements.txt  # Install all packages from the requirements.txt
+5. python main.py  # Run the application
+6. deactivate  # Deactivate the virtual environment if needed
 
 <!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
 <a id="readme-top"></a>

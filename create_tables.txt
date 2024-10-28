@@ -42,13 +42,13 @@ CREATE TABLE credit_cards (
 );
 
 -- Table to store shopping cart items
-CREATE TABLE shopping_cart (
-    cart_id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
-    isbn VARCHAR(13),
-    quantity INT,
-    FOREIGN KEY (user_id) REFERENCES users(user_id),
-    FOREIGN KEY (isbn) REFERENCES books(isbn)
+CREATE TABLE cart (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id VARCHAR(50) NOT NULL,
+    book_id VARCHAR(50) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    quantity INT NOT NULL,
+    UNIQUE(user_id, book_id)  -- Ensures each user has only one entry per book
 );
 
 -- Table to store book ratings and comments
@@ -141,23 +141,6 @@ CREATE TABLE Book (
     FOREIGN KEY (publisher_id) REFERENCES Publisher(id)
 );
 
--- Shopping Cart Table
-CREATE TABLE ShoppingCart (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
-    FOREIGN KEY (user_id) REFERENCES User(id)
-);
-
--- Shopping Cart Item Table (Many-to-Many for Cart and Books)
-CREATE TABLE ShoppingCartItem (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    cart_id INT,
-    book_isbn VARCHAR(13),
-    quantity INT,
-    FOREIGN KEY (cart_id) REFERENCES ShoppingCart(id),
-    FOREIGN KEY (book_isbn) REFERENCES Book(isbn)
-);
-
 -- Rating Table
 CREATE TABLE Rating (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -204,8 +187,6 @@ DROP TABLE WishlistItem;
 DROP TABLE Wishlist;
 DROP TABLE Comment;
 DROP TABLE Rating;
-DROP TABLE ShoppingCartItem;
-DROP TABLE ShoppingCart;
 DROP TABLE Book;
 DROP TABLE Author;
 DROP TABLE Publisher;
