@@ -9,6 +9,8 @@ import os
 from Books import get_books 
 from bookdetails import get_book 
 from bookdetails import create_book
+from Comments import add_comment, get_comments
+from BookRating import get_average_rating
 
 print("API is running")
 
@@ -37,8 +39,24 @@ def bookdetails_route():
 
 # Route to GET a book using ISBN
 @app.route('/bookdetails/<isbn>', methods=['GET'])
-def bookdetails_route(isbn):
+def bookdetails_route1(isbn):
     return get_book(mysql, isbn)
+
+# Route to GET comments for a specific book by ISBN
+@app.route('/comments', methods=['GET'])
+def get_comments_for_book(book_isbn):
+    return get_comments(mysql, book_isbn)
+
+# Route to POST a comment with a datestamp
+@app.route('/create_comment', methods=['POST'])
+def add_comment_route():
+    return add_comment(mysql)
+
+# Route to GET the average rating
+@app.route('/average_rating', methods=['GET'])
+def average_rating_route():
+    return get_average_rating(mysql)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
