@@ -16,47 +16,6 @@ def get_cart_books(mysql):
             JOIN ShoppingCart ON ShoppingCartItem.cart_id = ShoppingCart.id
             JOIN Book ON ShoppingCartItem.book_isbn = Book.isbn
             WHERE ShoppingCart.user_id = %s;
-
-        """
-        cursor.execute(query, (int(user_id),))
-        books = cursor.fetchall()
-        cursor.close()
-
-        print(books)
-
-        # Format the result as a list of book objects
-        book_list = []
-        for book in books:
-            book_obj = {
-                'Book Id': book[0],
-                'Title': book[1],
-                'Price': book[2],
-                'Quantity': book[3]
-            }
-            book_list.append(book_obj)
-
-        return jsonify(book_list), 200
-
-    except Exception as e:
-        # Log the exception if needed and return an error response
-        return jsonify({'error': str(e)}), 500
-    
-def get_cart_books(mysql):
-    # Get User Id from query parameters
-    user_id = request.args.get('UserId')
-    print(user_id)
-    if not user_id:
-        return jsonify({'error': 'User Id is required'}), 400
-
-    try:
-        cursor = mysql.connection.cursor()
-        # Query to retrieve books in the user's shopping cart
-        query = """
-            SELECT Book.isbn, Book.name, Book.price, ShoppingCartItem.quantity
-            FROM ShoppingCartItem
-            JOIN ShoppingCart ON ShoppingCartItem.cart_id = ShoppingCart.id
-            JOIN Book ON ShoppingCartItem.book_isbn = Book.isbn
-            WHERE ShoppingCart.user_id = %s;
         """
         cursor.execute(query, (int(user_id),))
         books = cursor.fetchall()
@@ -84,6 +43,9 @@ def get_cart_books(mysql):
 def add_book_to_cart(mysql):
     # Get User Id and Book Id from the request data
     data = request.get_json()
+    if not data:
+        return jsonify({'error': 'Invalid or missing JSON data in the request body'}), 400
+
     user_id = data.get('UserId')
     book_id = data.get('BookId')
 
@@ -143,6 +105,65 @@ def add_book_to_cart(mysql):
         cursor.close()
 
         return jsonify({'message': 'Book added to shopping cart'}), 201
+
+    except Exception as e:
+        # Log the exception if needed and return an error response
+        return jsonify({'error': str(e)}), 500
+
+def remove_book_from_cart(mysql):
+    # Get User Id and Book Id from the request data
+    data = request.get_json()
+    if not data:
+        return jsonify({'error': 'Invalid or missing JSON data in the request body'}), 400
+
+    user_id = data.get('UserId')
+    book_id = data.get('BookId')
+
+    if not user_id or not book_id:
+        return jsonify({'error': 'User Id and Book Id are required'}), 400
+
+    try:
+        cursor = mysql.connection.cursor()
+
+        # Get the shopping cart for the user
+        cursor.execute("SELECT id FROM ShoppingCart WHERE user_id = %s", (int(user_id),))
+        cart = cursor.fetchone()
+        if not cart:
+            cursor.close()
+            return jsonify({'error': 'Shopping cart not found for user'}), 404
+
+        cart_id = cart[0]
+
+        # Check if the book is in the cart
+        cursor.execute("""
+            SELECT quantity FROM ShoppingCartItem
+            WHERE cart_id = %s AND book_isbn = %s
+        """, (int(cart_id), int(book_id)))
+        item = cursor.fetchone()
+        if not item:
+            cursor.close()
+            return jsonify({'error': 'Book not found in shopping cart'}), 404
+
+        quantity = item[0]
+        if quantity > 1:
+            # Decrease the quantity by 1
+            new_quantity = quantity - 1
+            cursor.execute("""
+                UPDATE ShoppingCartItem
+                SET quantity = %s
+                WHERE cart_id = %s AND book_isbn = %s
+            """, (new_quantity, int(cart_id), int(book_id)))
+        else:
+            # Remove the book from the cart
+            cursor.execute("""
+                DELETE FROM ShoppingCartItem
+                WHERE cart_id = %s AND book_isbn = %s
+            """, (int(cart_id), int(book_id)))
+
+        mysql.connection.commit()
+        cursor.close()
+
+        return jsonify({'message': 'Book removed from shopping cart'}), 200
 
     except Exception as e:
         # Log the exception if needed and return an error response
