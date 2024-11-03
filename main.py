@@ -6,16 +6,11 @@ from flask import Flask, request, jsonify
 from flask_mysqldb import MySQL
 from dotenv import load_dotenv
 import os
-<<<<<<< HEAD
-from Books import get_books 
-from ShoppingCart import (get_cart_books,add_book_to_cart, remove_book_from_cart)
-=======
-from ShoppingCart import (get_cart_books,add_book_to_cart)
+from ShoppingCart import get_cart_books,add_book_to_cart, remove_book_from_cart
 from bookdetails import get_book 
 from bookdetails import create_book
 from bookdetails import create_author
 from Books import get_books, get_books_by_genre, update_book_price_by_publisher
->>>>>>> 11a8229e54825d040e2e625fd1622c5f85ffa5c1
 
 print("API is running")
 
@@ -47,12 +42,11 @@ def get_cart_book():
 def add_cart_book():
     return add_book_to_cart(mysql)
 
-<<<<<<< HEAD
 # Route to delete a book from the shopping cart
 @app.route('/shopping_cart', methods=['DELETE'])
 def delete_from_shopping_cart_route():
     return remove_book_from_cart(mysql)
-=======
+
 # Route to POST a book
 @app.route('/create-book', methods=['POST'])
 def create_book_route():
@@ -77,7 +71,6 @@ def books_by_genre():
 @app.route('/books_discount_by_publisher', methods=['PUT'])
 def books_discount_by_publisher():
     return update_book_price_by_publisher(mysql) 
->>>>>>> 11a8229e54825d040e2e625fd1622c5f85ffa5c1
 
 if __name__ == '__main__':
     app.run(debug=True)
