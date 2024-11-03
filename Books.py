@@ -56,7 +56,7 @@ def get_books_by_genre(mysql):
             }
             books.append(book)
         
-        return jsonify({'message': 'Books rec successfully', 'data': books}), 200
+        return jsonify({'message': 'Books received successfully', 'data': books}), 200
     
     except Exception as e:
         print(e)
@@ -121,5 +121,42 @@ def update_book_price_by_publisher(mysql):
         print(e)
         return jsonify({'error': 'An error occurred during the update process'}), 500
     
+    finally:
+        cur.close()
+
+######################## Get All Books By Top Seller (W/ Limit) ########################
+def get_books_by_top_seller(mysql):
+    try:
+        cur = mysql.connection.cursor()
+        query = """SELECT * FROM bookstore.Book
+                    ORDER BY copies_sold DESC
+                    LIMIT 10;"""
+        cur.execute(query,)
+        rows = cur.fetchall()
+
+        if not rows:
+            return jsonify({'message': f'No books found.'}), 404
+
+        books = []
+        for row in rows:
+            book = {
+                'isbn': row[0],
+                'name': row[1],
+                'description': row[2],
+                'price': row[3],
+                'author_id': row[4],
+                'genre': row[5],
+                'publisher_id': row[6],
+                'year_published': row[7],
+                'copies_sold': row[8]
+            }
+            books.append(book)
+        
+        return jsonify({'message': 'Books received   successfully', 'data': books}), 200
+    
+    except Exception as e:
+        print(e)
+        return jsonify({'error': 'An error occurred during the get process'}), 500
+
     finally:
         cur.close()
