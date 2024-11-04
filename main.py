@@ -7,9 +7,7 @@ from flask_mysqldb import MySQL
 from dotenv import load_dotenv
 import os
 from ShoppingCart import (get_cart_books,add_book_to_cart)
-from bookdetails import get_book 
-from bookdetails import create_book
-from bookdetails import create_author
+from bookdetails import get_book, create_book, create_author, get_authors, get_books_by_author
 from Books import get_books, get_books_by_genre, update_book_price_by_publisher
 
 print("API is running")
@@ -56,6 +54,16 @@ def get_book_by_isbn(isbn):
 @app.route('/create-author', methods=['POST'])
 def create_author_route():
     return create_author(mysql)
+
+# Route to GET Authors
+@app.route('/authors', methods=['GET'])
+def authors_route():
+    return get_authors(mysql)
+
+# Route to GET Books by Author
+@app.route('/get-books-by-author/<author_id>', methods=['GET'])
+def get_books_by_author_route(author_id):
+    return get_books_by_author(mysql, author_id)
 
 # Route to GET books by Genre
 @app.route('/books_by_genre', methods=['GET'])
