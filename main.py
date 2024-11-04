@@ -6,10 +6,11 @@ from flask import Flask, request, jsonify
 from flask_mysqldb import MySQL
 from dotenv import load_dotenv
 import os
-from Books import get_books 
+from ShoppingCart import (get_cart_books,add_book_to_cart)
 from bookdetails import get_book 
 from bookdetails import create_book
 from bookdetails import create_author
+from Books import get_books, get_books_by_genre, update_book_price_by_publisher
 
 print("API is running")
 
@@ -31,6 +32,16 @@ mysql = MySQL(app)
 def books_route():
     return get_books(mysql)  # Call the function from book_routes.py
 
+# Route to get all books
+@app.route('/shopping_cart', methods=['GET'])
+def get_cart_book():
+    return get_cart_books(mysql)  # Call the function from book_routes.py
+
+# Route to add a book to the shopping cart
+@app.route('/shopping_cart', methods=['POST'])
+def add_cart_book():
+    return add_book_to_cart(mysql)
+
 # Route to POST a book
 @app.route('/create-book', methods=['POST'])
 def create_book_route():
@@ -45,6 +56,16 @@ def get_book_by_isbn(isbn):
 @app.route('/create-author', methods=['POST'])
 def create_author_route():
     return create_author(mysql)
+
+# Route to GET books by Genre
+@app.route('/books_by_genre', methods=['GET'])
+def books_by_genre():
+    return get_books_by_genre(mysql) 
+
+# Route to PUT a new discount on a book by publisher
+@app.route('/books_discount_by_publisher', methods=['PUT'])
+def books_discount_by_publisher():
+    return update_book_price_by_publisher(mysql) 
 
 if __name__ == '__main__':
     app.run(debug=True)
