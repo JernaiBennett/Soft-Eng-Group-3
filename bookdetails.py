@@ -217,7 +217,7 @@ def create_author(mysql):
 
 # GET route to retrieve all books by a specific author
 
-def get_books_by_author(author_id):
+def get_books_by_author(mysql, author_id):
     try:
         # Create a cursor object to execute the query
         cur = mysql.connection.cursor()
@@ -263,7 +263,7 @@ def get_books_by_author(author_id):
 
 # GET route to retrieve a list of all authors with their IDs
 
-def get_authors():
+def get_authors(mysql):
     try:
         # Create a cursor object to execute the query
         cur = mysql.connection.cursor()
