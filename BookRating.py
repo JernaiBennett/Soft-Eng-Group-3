@@ -38,9 +38,9 @@ def get_average_rating(mysql):
         book_name, avg_rating = result
 
         return jsonify({
-            "book_isbn": book_isbn,
-            "book_name": book_name,
-            "average_rating": avg_rating
+            "book_isbn": book_isbn, #print for book isbn
+            "book_name": book_name, #print book name
+            "average_rating": avg_rating #print average rating
         }), 200
 
     except Exception as e:
