@@ -117,36 +117,41 @@ After starting the server, use a tool like Postman or curl to interact with the 
 
 ## Contributors
 
-<div style="display: flex; flex-wrap: wrap; gap: 20px;">
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
 
 <div style="text-align: center; width: 120px;">
     <img src="https://github.com/JernaiBennett.png" width="50" height="50"><br>
     <a href="https://github.com/JernaiBennett">Jernai Bennett</a><br>
-    <small>Jernai Bennett</small>
+    <p>Jernai Bennett</p>
 </div>
 
 <div style="text-align: center; width: 120px;">
     <img src="https://github.com/fflores0467.png" width="50" height="50"><br>
     <a href="https://github.com/fflores0467">fflores0467</a><br>
-    <small>Francisco Flores</small>
+    <p>Francisco Flores</p>
 </div>
 
 <div style="text-align: center; width: 120px;">
     <img src="https://github.com/sandorh12.png" width="50" height="50"><br>
     <a href="https://github.com/sandorh12">sandorh12</a><br>
-    <small>Sandor Hernandez</small>
+    <p>Sandor Hernandez</p>
 </div>
 
 <div style="text-align: center; width: 120px;">
     <img src="https://github.com/justinCastillo1446.png" width="50" height="50"><br>
     <a href="https://github.com/justinCastillo1446">justinCastillo1446</a><br>
-    <small>Justin Castillo</small>
+    <p>Justin Castillo</p>
 </div>
 
 <div style="text-align: center; width: 120px;">
     <img src="https://github.com/NereidaRondon.png" width="50" height="50"><br>
     <a href="https://github.com/NereidaRondon">NereidaRondon</a><br>
-    <small>Nereida Rondon</small>
+    <p>Nereida Rondon</p>
+</div>
+<div style="text-align: center; width: 120px;">
+    <img src="" width="50" height="50"><br>
+    <a href="https://github.com/JakeC">JakeC</a><br>
+    <p>Jake Capuana</p>
 </div>
 
 </div>
