@@ -18,7 +18,7 @@ def get_comments(mysql, book_isbn):
     return jsonify(rows)
 
 def add_comment(mysql):
-    # Retrieve data from the request body
+    # Retrieves data from the request body
     data = request.get_json()
     book_isbn = data.get('book_isbn')
     user_id = data.get('user_id')
