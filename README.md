@@ -117,13 +117,13 @@ After starting the server, use a tool like Postman or curl to interact with the 
 
 ## Contributors
 
-| Profile Image                                                            | Name             | GitHub Profile                                              |
-| ------------------------------------------------------------------------ | ---------------- | ----------------------------------------------------------- |
-| ![Jernai Bennett](https://github.com/JernaiBennett.png?size=20)          | Jernai Bennett   | [Jernai Bennett](https://github.com/JernaiBennett)          |
-| ![fflores0467](https://github.com/fflores0467.png?size=100)              | Francisco Flores | [fflores0467](https://github.com/fflores0467)               |
-| ![sandorh12](https://github.com/sandorh12.png?size=20)                   | Sandor Hernandez | [sandorh12](https://github.com/sandorh12)                   |
-| ![justinCastillo1446](https://github.com/justinCastillo1446.png?size=20) | Justin Castillo  | [justinCastillo1446](https://github.com/justinCastillo1446) |
-| ![Nereida Rondon](https://github.com/NereidaRondon.png?size=100)         | Nereida Rondon   | [Nereida Rondon](https://github.com/NereidaRondon)          |
+| Profile Image                                                                | Name             | GitHub Profile                                              |
+| ---------------------------------------------------------------------------- | ---------------- | ----------------------------------------------------------- |
+| <img src="https://github.com/JernaiBennett.png" width="50" height="50">      | Jernai Bennett   | [Jernai Bennett](https://github.com/JernaiBennett)          |
+| <img src="https://github.com/fflores0467.png" width="50" height="50">        | Francisco Flores | [fflores0467](https://github.com/fflores0467)               |
+| <img src="https://github.com/sandorh12.png" width="50" height="50">          | Sandor Hernandez | [sandorh12](https://github.com/sandorh12)                   |
+| <img src="https://github.com/justinCastillo1446.png" width="50" height="50"> | Justin Castillo  | [justinCastillo1446](https://github.com/justinCastillo1446) |
+| <img src="https://github.com/NereidaRondon.png" width="50" height="50">      | Nereida Rondon   | [Nereida Rondon](https://github.com/NereidaRondon)          |
 
 ## License
 
