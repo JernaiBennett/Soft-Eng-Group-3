@@ -1,257 +1,161 @@
-### HOW TO MAC ###
-1. python3 -m pip install --user virtualenv  # Install virtualenv if you don’t have it
-2. python3 -m venv venv  # Create the virtual environment
-3. source venv/bin/activate  # Activate the virtual environment
-4. pip3 install -r requirements.txt  # Install all packages from the requirements.txt
-5. python3 main.py  # Run the application
-6. deactivate  # Deactivate the virtual environment if needed
+# Bookstore Management API
 
-### HOW TO Windows ###
-1. python -m pip install --user virtualenv  # Install virtualenv if you don’t have it
-2. python -m venv venv  # Create the virtual environment
-3. venv\Scripts\activate  # Activate the virtual environment
-4. pip install -r requirements.txt  # Install all packages from the requirements.txt
-5. python main.py  # Run the application
-6. deactivate  # Deactivate the virtual environment if needed
+This project is a Flask-based RESTful API for managing a bookstore system. It provides endpoints for handling books, authors, users' shopping carts, and wishlists. The API is designed for easy integration with front-end applications and supports CRUD operations for various bookstore entities.
 
-<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
-<a id="readme-top"></a>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
+## Table of Contents
 
+1. [Features](#features)
+2. [Endpoints](#endpoints)
+3. [Installation](#installation)
+   - [How to (Mac)](#how-to-mac)
+   - [How to (Windows)](#how-to-windows)
+4. [Usage](#usage)
+5. [File Structure](#file-structure)
+6. [Dependencies](#dependencies)
+7. [Contributors](#contributors)
+8. [License](#license)
 
+## Features
 
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
+This API supports the following features for the online bookstore application:
 
+1. **Book Browsing and Sorting**: Allows users to browse and sort books by genre, retrieve top-sellers, and filter by rating. Additionally, admins can apply discounts by publisher.
+2. **Profile Management**: Enables users to create and update profiles with personal information, add credit cards, and retrieve user data.
+3. **Shopping Cart**: Allows users to add, view, and delete items from their shopping cart, as well as calculate the subtotal for items in the cart.
+4. **Book Details**: Provides detailed information about each book, including creating book entries, fetching book details, and associating books with authors.
+5. **Book Rating and Commenting**: Allows users to rate books on a 5-star scale, comment on books, retrieve comments, and see average ratings.
+6. **Wishlist Management**: Users can create multiple wishlists, add/remove books from wishlists, and move books from wishlists to the shopping cart.
 
+## Endpoints
 
-<br />
+### Books
 
+- **GET /books**: Retrieve all books.
+- **POST /create-book**: Add a new book.
+- **GET /get-book/<isbn>**: Retrieve book details by ISBN.
+- **GET /books_by_genre?genre=<genre>**: Retrieve books by genre.
+- **PUT /books_discount_by_publisher?publisher=<publisher>&discount=<discount>**: Update book prices by publisher with a discount.
 
-<!-- PROJECT Title -->
-<div align="center">
+### Authors
 
-<h3 align="center">project_title</h3>
+- **POST /create-author**: Add or update an author.
+- **GET /authors**: Retrieve all authors.
+- **GET /get-books-by-author/<author_id>**: List books by a specific author.
 
-  <p align="center">
-    project_description
-    <br />
-    <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
-  </p>
-</div>
+### Shopping Cart
 
+- **GET /shopping_cart?UserId=<user_id>**: Retrieve items in the user's shopping cart.
+- **POST /shopping_cart**: Add a book to the user's cart.
 
+### Wishlist
 
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
+- **POST /wishlist**: Create a new wishlist for a user.
+- **POST /wishlist/book**: Add a book to a wishlist.
+- **DELETE /wishlist/book**: Remove a book from a wishlist and optionally add it to the shopping cart.
+- **GET /wishlist/<wishlist_id>/books**: Retrieve all books in a wishlist.
 
+## Installation
 
-
-<!-- ABOUT THE PROJECT -->
-## About The Project
-
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-### Built With
-
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- GETTING STARTED -->
-## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
-### Installation
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/github_username/repo_name.git
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/JernaiBennett/Soft-Eng-Group-3
    ```
-3. Install NPM packages
-   ```sh
-   npm install
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-5. Change git remote url to avoid accidental pushes to base project
-   ```sh
-   git remote set-url origin github_username/repo_name
-   git remote -v # confirm the changes
+3. Set up the environment variables in a `.env` file:
+
+   ```plaintext
+   MYSQL_HOST=<your_mysql_host>
+   MYSQL_USER=<your_mysql_user>
+   MYSQL_PASSWORD=<your_mysql_password>
+   MYSQL_DB=<your_database_name>
    ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+4. Run the application:
+   ```bash
+   python main.py
+   ```
 
+### HOW TO MAC
 
+1. `python3 -m pip install --user virtualenv` # Install virtualenv if you don’t have it
+2. `python3 -m venv venv` # Create the virtual environment
+3. `source venv/bin/activate` # Activate the virtual environment
+4. `pip3 install -r requirements.txt` # Install all packages from the requirements.txt
+5. `python3 main.py` # Run the application
+6. `deactivate` # Deactivate the virtual environment if needed
 
-<!-- USAGE EXAMPLES -->
+### HOW TO Windows
+
+1. `python -m pip install --user virtualenv` # Install virtualenv if you don’t have it
+2. `python -m venv venv` # Create the virtual environment
+3. `venv\Scripts\activate` # Activate the virtual environment
+4. `pip install -r requirements.txt` # Install all packages from the requirements.txt
+5. `python main.py` # Run the application
+6. `deactivate` # Deactivate the virtual environment if needed
+
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+After starting the server, use a tool like Postman or curl to interact with the API. The server will be running at `http://localhost:5000`.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+## File Structure
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+- `main.py`: Main entry point for the API, contains route definitions and initializes the application.
+- `ShoppingCart.py`: Contains functions to manage shopping cart operations, such as adding and retrieving books from a user's cart.
+- `bookdetails.py`: Handles book and author-related operations, including adding books, retrieving book details, and managing authors.
+- `Books.py`: Provides methods for retrieving books, filtering by genre, and updating book prices by applying discounts from specific publishers.
+- `wishlistmanagement.py`: Manages wishlist functionality, including creating wishlists, adding/removing books, and transferring books from a wishlist to a shopping cart.
 
+## Dependencies
 
+- **Flask**: For creating the web server and handling API routes.
+- **Flask-MySQLdb**: For connecting Flask to MySQL databases.
+- **dotenv**: To load environment variables from a `.env` file.
+- **MySQL Connector**: For wishlist management, enabling interactions with the MySQL database.
 
-<!-- ROADMAP -->
-## Roadmap
+## Contributors
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
 
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
+<div style="text-align: center; width: 120px;">
+    <img src="https://github.com/JernaiBennett.png" width="50" height="50"><br>
+    <a href="https://github.com/JernaiBennett">Jernai Bennett</a><br>
+    <p>Jernai Bennett</p>
+</div>
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<div style="text-align: center; width: 120px;">
+    <img src="https://github.com/fflores0467.png" width="50" height="50"><br>
+    <a href="https://github.com/fflores0467">fflores0467</a><br>
+    <p>Francisco Flores</p>
+</div>
 
+<div style="text-align: center; width: 120px;">
+    <img src="https://github.com/sandorh12.png" width="50" height="50"><br>
+    <a href="https://github.com/sandorh12">sandorh12</a><br>
+    <p>Sandor Hernandez</p>
+</div>
 
+<div style="text-align: center; width: 120px;">
+    <img src="https://github.com/justinCastillo1446.png" width="50" height="50"><br>
+    <a href="https://github.com/justinCastillo1446">justinCastillo1446</a><br>
+    <p>Justin Castillo</p>
+</div>
 
-<!-- CONTRIBUTING -->
-## Contributing
+<div style="text-align: center; width: 120px;">
+    <img src="https://github.com/NereidaRondon.png" width="50" height="50"><br>
+    <a href="https://github.com/NereidaRondon">NereidaRondon</a><br>
+    <p>Nereida Rondon</p>
+</div>
+<div style="text-align: center; width: 120px;">
+    <img src="" width="50" height="50"><br>
+    <a href="https://github.com/JakeC">JakeC</a><br>
+    <p>Jake Capuana</p>
+</div>
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+</div>
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-### Top contributors:
-
-<a href="https://github.com/github_username/repo_name/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=github_username/repo_name" alt="contrib.rocks image" />
-</a>
-
-
-
-<!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- CONTACT -->
-## Contact
-
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
-
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-* []()
-* []()
-* []()
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
-[contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo_name/network/members
-[stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
-[stars-url]: https://github.com/github_username/repo_name/stargazers
-[issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
-[issues-url]: https://github.com/github_username/repo_name/issues
-[license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
-[license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: images/screenshot.png
-[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
-[Next-url]: https://nextjs.org/
-[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[React-url]: https://reactjs.org/
-[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[Bootstrap-url]: https://getbootstrap.com
+This project is licensed under the MIT License.
