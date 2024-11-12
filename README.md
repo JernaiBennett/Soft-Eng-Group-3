@@ -119,10 +119,10 @@ After starting the server, use a tool like Postman or curl to interact with the 
 
 | Profile Image                                                            | Name             | GitHub Profile                                              |
 | ------------------------------------------------------------------------ | ---------------- | ----------------------------------------------------------- |
-| ![Jernai Bennett](https://github.com/JernaiBennett.png?size=50)          | Jernai Bennett   | [Jernai Bennett](https://github.com/JernaiBennett)          |
+| ![Jernai Bennett](https://github.com/JernaiBennett.png?size=25)          | Jernai Bennett   | [Jernai Bennett](https://github.com/JernaiBennett)          |
 | ![fflores0467](https://github.com/fflores0467.png?size=100)              | Francisco Flores | [fflores0467](https://github.com/fflores0467)               |
-| ![sandorh12](https://github.com/sandorh12.png?size=50)                   | Sandor Hernandez | [sandorh12](https://github.com/sandorh12)                   |
-| ![justinCastillo1446](https://github.com/justinCastillo1446.png?size=50) | Justin Castillo  | [justinCastillo1446](https://github.com/justinCastillo1446) |
+| ![sandorh12](https://github.com/sandorh12.png?size=25)                   | Sandor Hernandez | [sandorh12](https://github.com/sandorh12)                   |
+| ![justinCastillo1446](https://github.com/justinCastillo1446.png?size=25) | Justin Castillo  | [justinCastillo1446](https://github.com/justinCastillo1446) |
 | ![Nereida Rondon](https://github.com/NereidaRondon.png?size=100)         | Nereida Rondon   | [Nereida Rondon](https://github.com/NereidaRondon)          |
 
 ## License
