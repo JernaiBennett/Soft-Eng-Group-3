@@ -12,6 +12,10 @@ from bookdetails import create_book
 from Comments import add_comment, get_comments
 from BookRating import get_average_rating
 from ShoppingCart import (get_cart_books,add_book_to_cart)
+from bookdetails import get_book 
+from bookdetails import create_book
+from bookdetails import create_author
+from Books import get_books, get_books_by_genre, update_book_price_by_publisher, get_books_by_top_seller
 from bookdetails import get_book, create_book, create_author, get_authors, get_books_by_author
 from Books import get_books, get_books_by_genre, update_book_price_by_publisher
 
@@ -98,6 +102,11 @@ def books_by_genre():
 @app.route('/books_discount_by_publisher', methods=['PUT'])
 def books_discount_by_publisher():
     return update_book_price_by_publisher(mysql) 
+
+# Route to GET books by Top Sellers
+@app.route('/books_by_top_seller', methods=['GET'])
+def books_by_top_sellers():
+    return get_books_by_top_seller(mysql) 
 
 if __name__ == '__main__':
     app.run(debug=True)
