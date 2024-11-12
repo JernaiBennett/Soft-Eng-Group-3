@@ -136,7 +136,9 @@ After starting the server, use a tool like Postman or curl to interact with the 
     <a href="https://github.com/sandorh12">sandorh12</a><br>
     <p>Sandor Hernandez</p>
 </div>
+</div>
 
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
 <div style="text-align: center; width: 120px;">
     <img src="https://github.com/justinCastillo1446.png" width="50" height="50"><br>
     <a href="https://github.com/justinCastillo1446">justinCastillo1446</a><br>
@@ -149,8 +151,8 @@ After starting the server, use a tool like Postman or curl to interact with the 
     <p>Nereida Rondon</p>
 </div>
 <div style="text-align: center; width: 120px;">
-    <img src="" width="50" height="50"><br>
-    <a href="https://github.com/JakeC">JakeC</a><br>
+    <img src="https://github.com/JakeCapuana.png" width="50" height="50"><br>
+    <a href="https://github.com/JakeCapuana">JakeC</a><br>
     <p>Jake Capuana</p>
 </div>
 
