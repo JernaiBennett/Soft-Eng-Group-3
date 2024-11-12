@@ -117,13 +117,39 @@ After starting the server, use a tool like Postman or curl to interact with the 
 
 ## Contributors
 
-| Profile Image                                                                | Name             | GitHub Profile                                              |
-| ---------------------------------------------------------------------------- | ---------------- | ----------------------------------------------------------- |
-| <img src="https://github.com/JernaiBennett.png" width="50" height="50">      | Jernai Bennett   | [Jernai Bennett](https://github.com/JernaiBennett)          |
-| <img src="https://github.com/fflores0467.png" width="50" height="50">        | Francisco Flores | [fflores0467](https://github.com/fflores0467)               |
-| <img src="https://github.com/sandorh12.png" width="50" height="50">          | Sandor Hernandez | [sandorh12](https://github.com/sandorh12)                   |
-| <img src="https://github.com/justinCastillo1446.png" width="50" height="50"> | Justin Castillo  | [justinCastillo1446](https://github.com/justinCastillo1446) |
-| <img src="https://github.com/NereidaRondon.png" width="50" height="50">      | Nereida Rondon   | [Nereida Rondon](https://github.com/NereidaRondon)          |
+<div style="display: flex; flex-wrap: wrap; gap: 20px;">
+
+<div style="text-align: center; width: 120px;">
+    <img src="https://github.com/JernaiBennett.png" width="50" height="50"><br>
+    <a href="https://github.com/JernaiBennett">Jernai Bennett</a><br>
+    <small>Jernai Bennett</small>
+</div>
+
+<div style="text-align: center; width: 120px;">
+    <img src="https://github.com/fflores0467.png" width="50" height="50"><br>
+    <a href="https://github.com/fflores0467">fflores0467</a><br>
+    <small>Francisco Flores</small>
+</div>
+
+<div style="text-align: center; width: 120px;">
+    <img src="https://github.com/sandorh12.png" width="50" height="50"><br>
+    <a href="https://github.com/sandorh12">sandorh12</a><br>
+    <small>Sandor Hernandez</small>
+</div>
+
+<div style="text-align: center; width: 120px;">
+    <img src="https://github.com/justinCastillo1446.png" width="50" height="50"><br>
+    <a href="https://github.com/justinCastillo1446">justinCastillo1446</a><br>
+    <small>Justin Castillo</small>
+</div>
+
+<div style="text-align: center; width: 120px;">
+    <img src="https://github.com/NereidaRondon.png" width="50" height="50"><br>
+    <a href="https://github.com/NereidaRondon">NereidaRondon</a><br>
+    <small>Nereida Rondon</small>
+</div>
+
+</div>
 
 ## License
 
