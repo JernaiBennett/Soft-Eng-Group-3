@@ -1,4 +1,4 @@
-***DATA to use in the body of create-book***
+# DATA to use in the body of create-book
 
 {
     "isbn": "9780486266855",
@@ -11,6 +11,34 @@
     "publisher_name": "Wiley and Putnam",
     "year_published": 1845,
     "copies_sold": 5000000
+}
+
+
+{
+    "isbn": "9781974800111",
+    "name": "The Tell-Tale Heart",
+    "description": "A short story by Edgar Allan Poe, first published in 1843, about the unnamed narrator's descent into madness.",
+    "price": 6.99,
+    "author_first_name": "Edgar Allan",
+    "author_last_name": "Poe",
+    "genre": "Horror",
+    "publisher_name": "The Pioneer",
+    "year_published": 1843,
+    "copies_sold": 4000000
+}
+
+
+{
+    "isbn": "9780141441146",
+    "name": "Jane Eyre",
+    "description": "A novel by Charlotte Brontë, published in 1847, that follows the emotions and experiences of its eponymous heroine.",
+    "price": 11.99,
+    "author_first_name": "Charlotte",
+    "author_last_name": "Brontë",
+    "genre": "Classics",
+    "publisher_name": "Smith, Elder & Co.",
+    "year_published": 1847,
+    "copies_sold": 20000000
 }
 
 
@@ -114,6 +142,19 @@
 }
 
 
+{
+    "isbn": "9780141439815",
+    "name": "Persuasion",
+    "description": "A novel by Jane Austen that deals with the consequences of being persuaded to make decisions that affect one’s life.",
+    "price": 9.99,
+    "author_first_name": "Jane",
+    "author_last_name": "Austen",
+    "genre": "Romance",
+    "publisher_name": "Oxford University Press",
+    "year_published": 1817,
+    "copies_sold": 1500000
+}
+
 
 {
     "isbn": "9780141439808",
@@ -143,143 +184,6 @@
 }
 
 
-
-{
-    "isbn": "9780743477129",
-    "name": "Macbeth",
-    "description": "A tragedy by William Shakespeare, believed to have been written in 1606.",
-    "price": 7.99,
-    "author_first_name": "William",
-    "author_last_name": "Shakespeare",
-    "genre": "Drama",
-    "publisher_name": "Simon & Schuster",
-    "year_published": 1606,
-    "copies_sold": 17000000
-}
-
-
-
-
-{
-    "isbn": "9780439023498",
-    "name": "Catching Fire",
-    "description": "The second book in The Hunger Games trilogy, following Katniss Everdeen as she becomes the face of rebellion.",
-    "price": 16.99,
-    "author_first_name": "Suzanne",
-    "author_last_name": "Collins",
-    "genre": "Dystopian",
-    "publisher_name": "Scholastic Press",
-    "year_published": 2009,
-    "copies_sold": 19000000
-}
-
-############################################################################
-POST Create Author Profile:
-{
-    "first_name": "Suzanne",
-    "last_name": "Collins",
-    "biography": "Suzanne Collins is an American writer and author of The Hunger Games series.",
-    "publisher_name": "Scholastic Press"
-}
-
-{
-    "first_name": "F. Scott",
-    "last_name": "Fitzgerald",
-    "biography": "F. Scott Fitzgerald was an American novelist and short story writer, widely regarded as one of the greatest American writers of the 20th century. He is best known for his novel 'The Great Gatsby'.",
-    "publisher_name": "Penguin Books"
-}
-############################################################################
-GET book by ISBN:
-
-9780141439815       Persuasion
-9780743482747       Romeo and Juliet
-
-############################################################################
-
-***ALREADY ADDED:***
-
-
-{
-    "isbn": "9780439023511",
-    "name": "Mockingjay",
-    "description": "The final book in The Hunger Games trilogy, where Katniss Everdeen fights to end the totalitarian rule of the Capitol.",
-    "price": 18.99,
-    "author_first_name": "Suzanne",
-    "author_last_name": "Collins",
-    "genre": "Dystopian",
-    "publisher_name": "Scholastic Press",
-    "year_published": 2010,
-    "copies_sold": 18000000
-}
-
-{
-    "isbn": "9780141441146",
-    "name": "Jane Eyre",
-    "description": "A novel by Charlotte Brontë, published in 1847, that follows the emotions and experiences of its eponymous heroine.",
-    "price": 11.99,
-    "author_first_name": "Charlotte",
-    "author_last_name": "Brontë",
-    "genre": "Classics",
-    "publisher_name": "Smith, Elder & Co.",
-    "year_published": 1847,
-    "copies_sold": 20000000
-}
-
-
-{
-    "isbn": "9780141439815",
-    "name": "Persuasion",
-    "description": "A novel by Jane Austen that deals with the consequences of being persuaded to make decisions that affect one’s life.",
-    "price": 9.99,
-    "author_first_name": "Jane",
-    "author_last_name": "Austen",
-    "genre": "Romance",
-    "publisher_name": "Oxford University Press",
-    "year_published": 1817,
-    "copies_sold": 1500000
-}
-
-{
-    "isbn": "9780439023481",
-    "name": "The Hunger Games",
-    "description": "A dystopian novel by Suzanne Collins that follows the story of Katniss Everdeen in a post-apocalyptic world.",
-    "price": 14.99,
-    "author_first_name": "Suzanne",
-    "author_last_name": "Collins",
-    "genre": "Dystopian",
-    "publisher_name": "Scholastic Press",
-    "year_published": 2008,
-    "copies_sold": 23000000
-}
-
-{
-    "isbn": "9780385720977",
-    "name": "The Handmaid's Tale",
-    "description": "A dystopian novel by Margaret Atwood set in a totalitarian regime that treats women as property.",
-    "price": 12.99,
-    "author_first_name": "Margaret",
-    "author_last_name": "Atwood",
-    "genre": "Dystopian",
-    "publisher_name": "McClelland and Stewart",
-    "year_published": 1985,
-    "copies_sold": 200000
-}
-
-{
-    "isbn": "9780399501487",
-    "name": "Lord of the Flies",
-    "description": "A novel by William Golding about a group of boys stranded on an uninhabited island and their descent into savagery.",
-    "price": 10.99,
-    "author_first_name": "William",
-    "author_last_name": "Golding",
-    "genre": "Classics",
-    "publisher_name": "Faber and Faber",
-    "year_published": 1954,
-    "copies_sold": 15000000
-}
-
-
-
 {
     "isbn": "9780743477112",
     "name": "Hamlet",
@@ -295,6 +199,79 @@ GET book by ISBN:
 
 
 {
+    "isbn": "9780743477129",
+    "name": "Macbeth",
+    "description": "A tragedy by William Shakespeare, believed to have been written in 1606.",
+    "price": 7.99,
+    "author_first_name": "William",
+    "author_last_name": "Shakespeare",
+    "genre": "Drama",
+    "publisher_name": "Simon & Schuster",
+    "year_published": 1606,
+    "copies_sold": 17000000
+}
+
+
+{
+    "isbn": "9780439023481",
+    "name": "The Hunger Games",
+    "description": "A dystopian novel by Suzanne Collins that follows the story of Katniss Everdeen in a post-apocalyptic world.",
+    "price": 14.99,
+    "author_first_name": "Suzanne",
+    "author_last_name": "Collins",
+    "genre": "Dystopian",
+    "publisher_name": "Scholastic Press",
+    "year_published": 2008,
+    "copies_sold": 23000000
+}
+
+
+{
+    "isbn": "9780439023498",
+    "name": "Catching Fire",
+    "description": "The second book in The Hunger Games trilogy, following Katniss Everdeen as she becomes the face of rebellion.",
+    "price": 16.99,
+    "author_first_name": "Suzanne",
+    "author_last_name": "Collins",
+    "genre": "Dystopian",
+    "publisher_name": "Scholastic Press",
+    "year_published": 2009,
+    "copies_sold": 19000000
+}
+
+
+
+{
+    "isbn": "9780439023511",
+    "name": "Mockingjay",
+    "description": "The final book in The Hunger Games trilogy, where Katniss Everdeen fights to end the totalitarian rule of the Capitol.",
+    "price": 18.99,
+    "author_first_name": "Suzanne",
+    "author_last_name": "Collins",
+    "genre": "Dystopian",
+    "publisher_name": "Scholastic Press",
+    "year_published": 2010,
+    "copies_sold": 18000000
+}
+
+############################################################################
+
+ALREADY ADDED:
+
+{
+    "isbn": "9780399501487",
+    "name": "Lord of the Flies",
+    "description": "A novel by William Golding about a group of boys stranded on an uninhabited island and their descent into savagery.",
+    "price": 10.99,
+    "author_first_name": "William",
+    "author_last_name": "Golding",
+    "genre": "Classics",
+    "publisher_name": "Faber and Faber",
+    "year_published": 1954,
+    "copies_sold": 15000000
+}
+
+{
     "isbn": "9780743477550",
     "name": "Othello",
     "description": "A tragedy by William Shakespeare, believed to have been written in 1603. It revolves around its two central characters: Othello, a Moorish general in the Venetian army, and his unfaithful ensign, Iago.",
@@ -306,36 +283,3 @@ GET book by ISBN:
     "year_published": 1603,
     "copies_sold": 17000000
 }
-
-
-{
-    "isbn": "9780199535569",
-    "name": "Pride and Prejudice",
-    "description": "A romantic novel of manners that depicts the British Regency-era, written by Jane Austen.",
-    "price": 9.99,
-    "author_first_name": "Jane",
-    "author_last_name": "Austen",
-    "genre": "Romance",
-    "publisher_name": "Oxford University Press",
-    "year_published": 1813,
-    "copies_sold": 2000000
-}
-
-
-
-{
-    "isbn": "9781974800111",
-    "name": "The Tell-Tale Heart",
-    "description": "A short story by Edgar Allan Poe, first published in 1843, about the unnamed narrator's descent into madness.",
-    "price": 6.99,
-    "author_first_name": "Edgar Allan",
-    "author_last_name": "Poe",
-    "genre": "Horror",
-    "publisher_name": "The Pioneer",
-    "year_published": 1843,
-    "copies_sold": 4000000
-}
-
-
-
-
