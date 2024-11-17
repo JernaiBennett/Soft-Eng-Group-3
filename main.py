@@ -11,7 +11,7 @@ from bookdetails import get_book
 from bookdetails import create_book
 from Comments import add_comment, get_comments
 from BookRating import get_average_rating
-from ShoppingCart import get_cart_books,add_book_to_cart, remove_book_from_cart
+from ShoppingCart import get_cart_books,add_book_to_cart, remove_book_from_cart, get_cart_subtotal
 from bookdetails import get_book 
 from bookdetails import create_book
 from bookdetails import create_author
@@ -43,6 +43,11 @@ def books_route():
 @app.route('/shopping_cart', methods=['GET'])
 def get_cart_book():
     return get_cart_books(mysql)  # Call the function from book_routes.py
+
+# Route to retrieve the subtotal price of all items in the user's shopping cart
+@app.route('/shopping_cart/subtotal', methods=['GET'])
+def get_cart_subtotal_route():
+    return get_cart_subtotal(mysql)  # Call the function from ShoppingCart.py
 
 # Route to add a book to the shopping cart
 @app.route('/shopping_cart', methods=['POST'])

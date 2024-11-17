@@ -168,3 +168,33 @@ def remove_book_from_cart(mysql):
     except Exception as e:
         # Log the exception if needed and return an error response
         return jsonify({'error': str(e)}), 500
+
+def get_cart_subtotal(mysql):
+    # Get User Id from query parameters
+    user_id = request.args.get('UserId')
+    if not user_id:
+        return jsonify({'error': 'User Id is required'}), 400
+
+    try:
+        cursor = mysql.connection.cursor()
+        # Query to calculate the subtotal price of all items in the user's shopping cart
+        query = """
+            SELECT SUM(Book.price * ShoppingCartItem.quantity) as subtotal
+            FROM ShoppingCartItem
+            JOIN ShoppingCart ON ShoppingCartItem.cart_id = ShoppingCart.id
+            JOIN Book ON ShoppingCartItem.book_isbn = Book.isbn
+            WHERE ShoppingCart.user_id = %s;
+        """
+        cursor.execute(query, (int(user_id),))
+        result = cursor.fetchone()
+        cursor.close()
+
+        # If the cart is empty, subtotal will be None
+        subtotal = result[0] if result[0] is not None else 0.0
+
+        # Return the subtotal as JSON
+        return jsonify({'Subtotal': float(subtotal)}), 200
+
+    except Exception as e:
+        # Log the exception if needed and return an error response
+        return jsonify({'error': str(e)}), 500
